@@ -17,5 +17,3 @@ public class Formatter { // Я и правда забыл им воспольз�
         return rubles + currency;
     }
 }
-
-// ༼ つ ◕_◕ ༽つ

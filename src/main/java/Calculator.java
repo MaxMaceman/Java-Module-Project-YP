@@ -72,5 +72,3 @@ class Calculator {
         System.out.println("Каждый должен заплатить по:\n" + Formatter.chooseRublesWord(costPerPerson));
     }
 }
-
-// ༼ つ ◕_◕ ༽つ

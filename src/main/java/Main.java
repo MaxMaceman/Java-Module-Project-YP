@@ -24,5 +24,3 @@ public class Main {
         calculator.start();
     }
 }
-
-// ༼ つ ◕_◕ ༽つ
