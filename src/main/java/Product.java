@@ -20,3 +20,5 @@ public class Product { // Вынес из "Calculator"
         return name + " - " + formattedPrice;
     }
 }
+
+// ༼ つ ◕_◕ ༽つ
