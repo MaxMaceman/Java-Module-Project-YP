@@ -1,31 +1,8 @@
-import java.util.ArrayList;
-import java.text.DecimalFormat;
 import java.util.Scanner;
-
-class Product {
-    private String name;
-    private double price;
-
-    public Product(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public String toString() {
-        return name + " - " + new DecimalFormat("0.00").format(price) + " рубля";
-    }
-}
+import java.util.ArrayList;
 
 class Calculator {
-    private int persons;
+    private final int persons; // Добавил модификатор
 
     public Calculator(int persons) {
         this.persons = persons;
@@ -36,7 +13,7 @@ class Calculator {
         ArrayList<Product> allProductCost = new ArrayList<>();
 
         parentLoop:
-        while (true) {
+        while (true) { // Для ревью разбивать не стал, боюсь всё поломать =), но в качестве факультатива разломаю на методы
             System.out.println("Введите наименование товара.");
             String product = scanner.nextLine();
 
@@ -55,7 +32,7 @@ class Calculator {
 
                     if (cost > 0) {
                         validCost = true;
-                        System.out.println("Добавлен товар:\n" + product + " - " + new DecimalFormat("0.00").format(cost) + " рубля.");
+                        System.out.println("Добавлен товар:\n" + product + " - " + Formatter.chooseRublesWord(cost));
                     } else {
                         System.out.println("Ошибка:\nСумма должна быть больше нуля.");
                     }
@@ -79,7 +56,7 @@ class Calculator {
                     break parentLoop;
                 } else {
                     System.out.println("Ошибка:\nВы ввели неверное значение." + "\nВведите команду \"Завершить\" чтобы выполнить расчет.");
-                    continue childLoop;
+                    continue; // Убрал лейбл "childLoop"
                 }
             }
         }
@@ -91,7 +68,7 @@ class Calculator {
         }
 
         double costPerPerson = totalCost / persons;
-        System.out.println("Всего:\n" + new DecimalFormat("0.00").format(totalCost) + " рублей.");
-        System.out.println("Каждый должен заплатить по:\n" + new DecimalFormat("0.00").format(costPerPerson) + " рублей.");
+        System.out.println("Всего:\n" + Formatter.chooseRublesWord(totalCost));
+        System.out.println("Каждый должен заплатить по:\n" + Formatter.chooseRublesWord(costPerPerson));
     }
 }
