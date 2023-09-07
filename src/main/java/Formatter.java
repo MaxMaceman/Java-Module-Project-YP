@@ -1,28 +1,19 @@
-public class Formatter {
-    public static String formatAmount(double amount) {
-        int rubles = (int) amount;
-        int kopecks = (int) ((amount - rubles) * 100);
+public class Formatter { // Я и правда забыл им воспользоваться, обрадовался что код без ошибок компилится и забыл =)
+    public static String chooseRublesWord(double total) {
 
-        String rublesWord = chooseRublesWord(rubles);
+        String rubles = String.format("%.2f", total); // Сначала переписал "formatAmount" со "StringBuilder", но отказался в пользу более простого способа
 
-        if (kopecks == 0) {
-            return rubles + " " + rublesWord;
-        } else if (kopecks < 10) {
-            return rubles + "." + "0" + kopecks + " " + rublesWord;
+        double iki = Math.floor(total) % 100; // Переписал прошлые условия, так как ловил неверное окончание при сумме "1.nn"
+        double bir = Math.floor(total) % 10;
+        String currency = " рубл";
+
+        if (bir == 0 || (bir >= 5 && bir <= 9) || (iki >= 10 && iki <= 20)) {
+            currency += "ей";
+        } else if (bir > 1 && bir < 5) {
+            currency += "я";
         } else {
-            return rubles + "." + kopecks + " " + rublesWord;
+            currency += "ь";
         }
-    }
-    private static String chooseRublesWord(int rubles) {
-        int lastDigit = rubles % 10;
-        int penultimateDigit = (rubles / 10) % 10;
-
-        if (penultimateDigit == 1 || lastDigit == 0 || (lastDigit >= 5 && lastDigit <= 9)) {
-            return "рублей";
-        } else if (lastDigit == 1) {
-            return "рубль";
-        } else {
-            return "рубля";
-        }
+        return rubles + currency;
     }
 }

@@ -9,7 +9,7 @@ public class Main {
             System.out.println("На скольких человек необходимо разделить счет?");
             if (scanner.hasNextInt()) {
                 persons = scanner.nextInt();
-                if (persons > 1) // Введеное значение должно быть целым числом больще 1
+                if (persons > 1)
                     break;
                 else {
                     System.out.println("Ошибка:\n" + "Введенное значение должно быть больше 1-го!");
